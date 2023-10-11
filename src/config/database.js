@@ -21,4 +21,31 @@ async function connectToDatabase() {
   }
 }
 
-module.exports = { sequelize, connectToDatabase };
+async function startTransaction() {
+  const transaction = await sequelize.transaction();
+  return transaction;
+}
+
+async function commitTransaction(transaction) {
+  try {
+    if (transaction) await transaction.commit();
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function rollbackTransaction(transaction) {
+  try {
+    if (transaction) await transaction.rollback();
+  } catch (error) {
+    throw error;
+  }
+}
+
+module.exports = {
+  sequelize,
+  connectToDatabase,
+  startTransaction,
+  commitTransaction,
+  rollbackTransaction,
+};
