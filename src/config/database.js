@@ -11,6 +11,10 @@ const sequelize = new Sequelize({
 
 async function connectToDatabase() {
   try {
+    // Drop all tables (existing data will be lost)
+    // await sequelize.drop({ force: true });
+    // console.log("Database reset and models synced.");
+
     await sequelize.authenticate();
     console.log("Connection has been established successfully.");
     await sequelize.sync();
