@@ -1,5 +1,5 @@
 const { UnauthorizedError } = require("../errors/CustomErrors");
-const { getUserByTelegramId } = require("../services/userService");
+const { getUserByTelegramId } = require("../userManager/userService");
 
 module.exports = async function authenticateByTelegramId(req, _res, next) {
   const telegramUserId = req.header("telegram-user-id");
